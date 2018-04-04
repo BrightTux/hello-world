@@ -1,0 +1,117 @@
+Notes:
+
+so basically we're taking a group of known data, and we're trying to find an approximated function to train the machine to produce the description of the data later on.. 
+
+In the example, the input to a function is an image, the goal is to obtain the description... for example, a picture of a car is given, using this function, we expect an output of "car" or "vehicle"
+
+and in our training data, we have the images as well as the descriptions which are used as "ground truths"
+
+this line says that our function, must be able to generalize to return good outputs for "unseen inputs" -- i guess that means of unknown/not trained data...
+
+
+so example: if we train our machine with "proton saga" and "myvi" only... if our testing data contains "suzuki swift" ... we still need to be able to generalize the "suzuki swift" and produce an output of "car"
+
+
+^^ the examples i gave above is considered image/object classification/detection 
+
+
+>> Generalization and overfitting:
+okay, so overfitting occurs when our machine learning model is trained "toooooo wellllll" until it cannot provide a good generalization of the output ... so in the example i gave above, the "suzuki swift" might not be able to be detected as a car?
+
+
+hmm ... so we need to find a way to balance the model in such a way that the precision and recall is somewhat balanced? so like the graph above here... 
+
+the diagonal line in the middle probably represents the " ground truth"
+and the blue line is the "predicted/trained model"
+
+the goal of generalization and overfitting is to model our ML(machine learning) model to closely approximate the black line.. 
+
+** Training iterations, i need to give it enough time to fit the function, but cannot train too long to prevent overfitting, hence, lowering the recall (accuracy might be high only for trained items)
+
+ 					OVERFITTING
+                                  __..T--'/
+                           __..--"__..--''
+GENERALIZE          __..--''__..--"
+           __..--''__..--''
+  __..T--''__..--"  // \\vlf
+ /__..--''         //   \\
+                  //     \\
+                 //       \\   >>> A BALANCING GAME!
+
+
+** Techniques to assist: Cross validation?
+hmm okay, so i need to set aside the test data that i have, and use it for cross validation after im done training it.. 
+
+okay, so after learning machine learning's basics, i need to find out more about deep learning models... CNN, RNN, etc etc, googlenet and yada yada... (add to todo list)
+
+// anyways
+
+
+
+>> FEEDFORWARD NETWORKS
+ehh? sorry its taking me a while to understand this part.. let me digest it then ill try to explain what i understand from this.. 
+
+
+so what i understand from this portion is this:
+y == feedforward network
+f* belongs to a family of functions.. (whoops)
+f(x;0) is used to represent a single function, with u as the output.. 
+
+--> 0 is a model parameters, may be 1,000 or 1,000,000 of them.. 
+
+now, when we have model or chosed a good representation of the functions/model, we would probably have the chance to accurately/closely resemble f*
+
+hence the parameters used to represent this function is a combination of vector x and the model parameters.... 
+
+hmm, is x some sort of weight? or just a vector that can be multiplied into a matrix? i think its just a vector... 
+
+*** I should come back to this part and learn more about it
+
+
+>> DESIGNING THE OUTPUT LAYER
+
+okay, so the function here with input x;M and b will produce some sort of curve as an output? (the y=mx+c equation here?)
+
+
+okay, so the output layers, there's 3 types (im guessing)
+
+Output layers:
+---------------
+1) Linear   - gives a 1D answer?
+2) Sigmoid  - provides a possiblity of whether or not this photo belongs 		to class x
+3) Softmax  - probablity as well? but within a particular class?
+
+to ensure the g(x) fits the distributions use::
+linear::  g(x) = x
+sigmoid:: g(x) = 1/(1+e^-x)
+softmax:: g(x)c = e^(xc)/SUM{e^(xi)}
+
+
+>> finding 0 (theta)
+------------------------------------
+** remember 0 = model parameters.. 
+
+so finding theta is an optimization problem..
+with J as the cost function.. the goal is to get the minimum cost
+
+so we should use a gradient descent algorithm to find the minimum cost 
+...
+
+so if the cost if lower than the threshold, exit the function
+else: 
+theta is updated to be theta - gradient(cost)
+
+so this process is done iteratively until the theta value is lower than treshold.. 
+
+okay... .direction? oh.. cuz its a curve, so it might be going up or down a curve?
+
+the gradient is computed as: 
+d_cost/d_thetha
+
+okay, so we dont want the gradient to be near 0, 
+cuz divided by 0 = BOOM!
+
+so basically, we dont want to model the output as a straight line,
+instead, always have it as a curve..
+
+and here the picture "straight up and down" gradient = undefined! == boom! haha
